@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/d46d3f6d6e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/morph/bootstrap.min.css" integrity="sha512-Nd3lZDftpGFIyfIz/Snlz7SzhEycjmHkNn3s2dmhrVyY55uJnTE+UiK75+CeXltD5GmU7c9n/JMDWaEwGQjowQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<header th:replace="~{fragments/header :: header}"></header>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 ">
+            <img th:src="@{/portada.png}" alt="" style="width: 100%;">
+        </div>
+        <div class="col-lg-6 m-auto">
+            <h1 style="font-size: 4rem;" class="text-uppercase">Biblioteca</h1>
+            <p style="font-size: 2rem;" >Encuentra todos los libros aquí</p>
+            <button type="button" class="btn btn-outline-warning">Lista de Libros</button>
+        </div>
+        <div class="card text-white bg-success mb-3 position-absolute bottom-0 end-o" style="max-width: 20rem;" th:if="${exito != null}">
+            <div class="card-header">EXITO</div>
+            <div class="card-body">
+                <p class="card-title" th:text="${exito}">Todo fue un exito con el registro</p>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

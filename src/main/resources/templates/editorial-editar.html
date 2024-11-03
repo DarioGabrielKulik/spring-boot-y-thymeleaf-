@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://kit.fontawesome.com/d46d3f6d6e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/morph/bootstrap.min.css" integrity="sha512-Nd3lZDftpGFIyfIz/Snlz7SzhEycjmHkNn3s2dmhrVyY55uJnTE+UiK75+CeXltD5GmU7c9n/JMDWaEwGQjowQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="container my-5">
+<header th:replace="~{fragments/header :: header}"></header>
+<div class="p-5 text-center bg-body-tertiary rounded-3">
+    <h1 class="text-body-emphasis">Editar Autor</h1>
+    <p class="col-lg-8 mx-auto fs-5 text-muted">
+        Edita el autor para almacenar en la base de datos.
+    </p>
+    <form  th:action="@{/editorial/modificar/__${editorial.id}__}" method="post">
+
+        <input hidden th:value="${id}" name="id">
+
+        <div class="form-floating col-lg-6 col-md-10 mb-4 m-auto" >
+            <input type="text" class="form-control" id="floatingPassword" th:value="${editorial.nombre}" name="nombre" placeholder="Editar autor" autocomplete="off">
+            <label for="floatingPassword">Editar autor</label>
+        </div>
+        <div class="d-inline-flex gap-2 ">
+            <button type="submit" class="btn btn-outline-success btn-lg">ACTUALIZAR EDITORIAL</button>
+        </div>
+    </form>
+    <div class="alert alert-dismissible alert-danger container mt-3" th:if="${error != null}">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Ops.... </strong><span th:text="${error}"></span>
+    </div>
+    <div class="alert alert-dismissible alert-success container mt-3" th:if="${exito != null}">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Genial! </strong><span th:text="${exito}"></span> .
+    </div>
+</div>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

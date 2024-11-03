@@ -1,0 +1,49 @@
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 border-bottom container">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <span class="fs-1"><i class="fa-solid fa-book me-3"></i>Biblioteca</span>
+
+        </a>
+
+        <ul class="nav nav-pills" th:if="${session.usuariosession != null}">
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Libro
+            </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" th:href="@{/libro/lista}">Lista</a></li>
+                    <li><a class="dropdown-item" th:href="@{/libro/registrar}" sec:authorize="hasRole('ROLE_ADMIN')">Crear</a></li>
+                </ul>    </li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Autor
+            </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" th:href="@{/autor/lista}">Lista</a></li>
+                    <li><a class="dropdown-item" th:href="@{/autor/registrar}" sec:authorize="hasRole('ROLE_ADMIN')">Crear</a></li>
+                </ul>    </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Editorial
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" th:href="@{/editorial/lista}">Lista</a></li>
+                    <li><a class="dropdown-item" th:href="@{/editorial/registrar}" sec:authorize="hasRole('ROLE_ADMIN')">Crear</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Perfil
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" th:href="@{/perfil}">Editar Perfil</a></li>
+                    <li><a class="dropdown-item" th:href="@{/logout}">Cerrar Seccion</a></li>
+                </ul>
+            </li>
+            <img th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="" class="logo" style="width: 40px; border-radius: 50%;" >
+        </ul>
+        <ul class="nav nav-pills" th:if="${session.usuariosession == null}">
+            <li class="nav-item"><a th:href="@{/}" class="nav-link active" aria-current="page">Home</a></li>
+            <li class="nav-item"><a th:href="@{/login}" class="nav-link" aria-current="page">Ingresar</a></li>
+            <li class="nav-item"><a th:href="@{/registrar}" class="nav-link" aria-current="page">Registrarse</a></li>
+        </ul>
+    </header>
+</div>

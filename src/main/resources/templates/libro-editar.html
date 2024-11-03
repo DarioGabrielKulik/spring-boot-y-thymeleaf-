@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://kit.fontawesome.com/d46d3f6d6e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/morph/bootstrap.min.css" integrity="sha512-Nd3lZDftpGFIyfIz/Snlz7SzhEycjmHkNn3s2dmhrVyY55uJnTE+UiK75+CeXltD5GmU7c9n/JMDWaEwGQjowQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<header th:replace="~{fragments/header :: header}"></header>
+<div class="container my-5">
+    <div class="p-5 text-center bg-body-tertiary rounded-3">
+        <h1 class="text-body-emphasis">Registrar Libro</h1>
+        <p class="col-lg-8 mx-auto fs-5 text-muted">
+            Registra un libro para almacenar en la base de datos.
+        </p>
+        <form th:action="@{/libro/modificar/__${libro.isbn}__}" method="post">
+
+
+            <div class="form-floating col-lg-6 col-md-10 mb-4 m-auto">
+                <input disabled th:value="${libro.isbn}" name="isbn" type="text" class="form-control" id="uno" placeholder="ISBN" autocomplete="off">
+                <label for="uno">ISBN</label>
+            </div>
+            <div class="form-floating col-lg-6 col-md-10 mb-4 m-auto">
+                <input th:value="${libro.titulo}" name="titulo" type="text" class="form-control" id="dos" placeholder="Título" autocomplete="off">
+                <label for="dos">Título</label>
+            </div>
+            <div class="form-floating col-lg-6 col-md-10 mb-4 m-auto">
+                <input th:value="${libro.ejemplares}" name="ejemplares" type="text" class="form-control" id="tres" placeholder="Ejemplares" autocomplete="off">
+                <label for="tres">Ejemplares</label>
+            </div>
+            <div class="text-start">
+                <div class="col-lg-6 col-md-10  m-auto">
+                    <label for="exampleSelect1" class="form-label mt-4">Autor</label>
+                    <select class="form-select" id="exampleSelect1" name="idAutor">
+                        <option> Seleccionar Autor</option>
+                        <option th:each=" autor : ${autores}"
+                                th:value="${autor.id}"
+                                th:text="${autor.nombre}"
+                        ></option>
+                    </select>
+                </div>
+                <div class="col-lg-6 col-md-10  m-auto">
+                    <label for="exampleSelect2" class="form-label mt-4 text-start">Editorial</label>
+                    <select class="form-select" id="exampleSelect2" name="idEditorial" >
+                        <option>Seleccionar Editorial</option>
+                        <option th:each=" editorial : ${editoriales}"
+                                th:value="${editorial.id}"
+                                th:text="${editorial.nombre}"
+                        ></option>
+                    </select>
+                </div>
+            </div>
+            <div class="d-inline-flex gap-2 mt-5">
+                <button type="submit" class="btn btn-outline-success btn-lg">ACTUALIZAR LIBRO</button>
+            </div>
+        </form>
+        <div class="alert alert-dismissible alert-danger container mt-3" th:if="${error != null}">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Ops.... </strong><span th:text="${error}"></span>
+        </div>
+        <div class="alert alert-dismissible alert-success container mt-3" th:if="${exito != null}">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Genial! </strong><span th:text="${exito}"></span> .
+        </div>
+    </div>
+</div>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>

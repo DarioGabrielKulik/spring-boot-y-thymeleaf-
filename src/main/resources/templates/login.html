@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://kit.fontawesome.com/d46d3f6d6e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/morph/bootstrap.min.css" integrity="sha512-Nd3lZDftpGFIyfIz/Snlz7SzhEycjmHkNn3s2dmhrVyY55uJnTE+UiK75+CeXltD5GmU7c9n/JMDWaEwGQjowQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<header th:replace="~{fragments/header :: header}"></header>
+
+<div
+        class="container d-flex align-items-center justify-content-center"
+>
+    <div class="modal-body">
+        <form class="col-12 col-md-6  m-auto" th:action="@{/logincheck}" method="post">
+            <h1 class="text-center mb-4 fw-bold fs-1">INICIAR SECCION</h1>
+            <div class="form-floating mb-3">
+                <input
+                        type="email"
+                        class="form-control rounded-3"
+                        id="floatingInput"
+                        placeholder="name@example.com"
+                        name="email"
+                />
+                <label for="floatingInput">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input
+                        type="password"
+                        class="form-control rounded-3"
+                        id="floatingPassword"
+                        placeholder="Password"
+                        name="password"
+                />
+                <label for="floatingPassword">Password</label>
+                <p class="text-danger" th:text="${error}" th:if="${error != null}"></p>
+            </div>
+            <button
+                    class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-success"
+                    type="submit"
+            >
+                Ingresar
+            </button>
+            <small class="text-body-secondary"
+            >Todos los derechos reservados por superman.</small
+            >
+        </form>
+    </div>
+</div>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>
